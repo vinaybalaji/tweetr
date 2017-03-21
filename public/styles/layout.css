@@ -27,6 +27,19 @@ body {
   background-color: #eee;
 }
 
+main {
+  /* display: block; */
+  margin-left: auto;
+  margin-right: auto;
+  height: 800px;
+  width: 450px;
+  background-color: white;
+  margin-top: 80px;
+  padding: 2em;
+
+  /*overflow: auto; */
+}
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */

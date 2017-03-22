@@ -1,0 +1,92 @@
+/* #old-tweets {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: lightgrey;
+}
+ */
+
+.each-old-tweet {
+  margin-top: 1em;
+  border-radius: 10px;
+  border:  2px solid lightgrey;
+  background-color: white;
+  opacity: 0.5;
+}
+
+.each-old-tweet header {
+  padding: 5px;
+  background-color: lightgrey;
+  height:  62px;
+}
+
+.each-old-tweet .avatar {
+  float: left;
+}
+
+.each-old-tweet .avatar img {
+  height: 60px;
+  border-radius: 5px;
+  vertical-align: top;
+  padding-bottom: 1px;
+}
+
+.each-old-tweet .name {
+  float: left;
+}
+
+.each-old-tweet .name h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 5px
+/*   font-size: 10px;
+ *//*   height: 60px;
+  border-radius: 5px;
+  vertical-align: top;
+  padding-bottom: 1px; */
+}
+
+.each-old-tweet .handle {
+  padding-top: 2px;
+  float: right;
+}
+
+.each-old-tweet .tweet-body {
+  padding: 8px;
+}
+
+.each-old-tweet hr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: lightgrey;
+  background-color: lightgrey;
+  opacity: 0.3;
+}
+
+.each-old-tweet footer {
+  padding: 8px;
+}
+
+#tweet-buttons {
+  height: 25px;
+  width: auto;
+  float: right;
+
+}
+/* .new-tweet h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.new-tweet hr {
+  margin-top: 0px;
+}
+
+.new-tweet textarea {
+  padding: 1%;
+  width: 98%;
+}
+
+.new-tweet .counter {
+  padding-left: 81%;
+} */

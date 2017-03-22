@@ -17,8 +17,12 @@
     <!-- Nav CSS -->
     <link rel="stylesheet" href="styles/nav.css" type="text/css" />
 
-        <!-- New-Tweet CSS -->
+    <!-- New-Tweet CSS -->
+
     <link rel="stylesheet" href="styles/new-tweet.css" type="text/css" />
+
+    <!-- Old-Tweets CSS -->
+    <link rel="stylesheet" href="styles/old-tweets.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="vendor/jquery-2.2.3.min.js"></script>
@@ -28,6 +32,12 @@
 
     <!-- Character Counter JS -->
     <script type="text/javascript" src="scripts/composer-char-counter.js"></script>
+
+    <!-- Tweet Age JS -->
+    <script type="text/javascript" src="scripts/tweet-age.js"></script>
+
+    <!-- Tweet Hover JS -->
+    <script type="text/javascript" src="scripts/tweet-hover.js"></script>
 
   </head>
 
@@ -51,9 +61,28 @@
           <span class="counter">140</span>
         </form>
       </section>
+      <section id="old-tweets">
+        <article class="each-old-tweet">
+          <header>
+            <div class="avatar">
+              <img class="avatar" src="images/sample-avatar.png">
+            </div>
+            <div class="name">
+              <h2>Newton</h2>
+            </div>
+            <div class="handle">
+              <section>@SirIsaac</section>
+            </div>
+          </header>
+          <section class="tweet-body">
+            If I have seen further it is by standing on the shoulders of giants
+          </section>
+          <hr>
+          <footer class="footer">
+          </footer>
+        </article>
+      </section>
    </main>
-
-
 
   </body>
 </html>

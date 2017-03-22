@@ -1,4 +1,4 @@
-function characterCounter() {
+$(function () {
   $( ".new-tweet textarea" ).keyup(function() {
     let counterValue = 140 - $(this).val().length;
     $(this).siblings(".counter").text(counterValue);
@@ -8,6 +8,4 @@ function characterCounter() {
       $(this).siblings(".counter").css("color", "black")
     }
   });
-}
-
-document.addEventListener('DOMContentLoaded', characterCounter);
+});

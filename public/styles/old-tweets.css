@@ -16,7 +16,7 @@
 .each-old-tweet header {
   padding: 5px;
   background-color: lightgrey;
-  height:  62px;
+  height:  70px;
 }
 
 .each-old-tweet .avatar {
@@ -39,11 +39,6 @@
   margin-bottom: 0px;
   padding-left: 5px;
   padding-right: 5px
-/*   font-size: 10px;
- *//*   height: 60px;
-  border-radius: 5px;
-  vertical-align: top;
-  padding-bottom: 1px; */
 }
 
 .each-old-tweet .handle {
@@ -67,26 +62,8 @@
   padding: 8px;
 }
 
-#tweet-buttons {
+.tweet-buttons {
   height: 25px;
   width: auto;
   float: right;
-
 }
-/* .new-tweet h2 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.new-tweet hr {
-  margin-top: 0px;
-}
-
-.new-tweet textarea {
-  padding: 1%;
-  width: 98%;
-}
-
-.new-tweet .counter {
-  padding-left: 81%;
-} */

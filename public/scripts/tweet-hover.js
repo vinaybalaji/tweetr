@@ -1,13 +1,10 @@
-function tweetHoverHighlight() {
-  $( ".each-old-tweet" ).mouseenter(function(e) {
-    $(this).css("opacity", 1);
-    $('<img src="images/tweet-buttons.png" id="tweet-buttons">').appendTo('footer');
+$(function () {
+  $('.each-old-tweet').mouseenter(function(e) {
+    $(this).css('opacity', 1);
+    $(this).children('.footer').append($('<img>').addClass('tweet-buttons').attr('src', 'images/tweet-buttons.png'));
   });
-  $( ".each-old-tweet" ).mouseleave(function(e) {
-    $(this).css("opacity", 0.5);
-    $("#tweet-buttons").remove();
+  $('.each-old-tweet').mouseleave(function(e) {
+    $(this).css('opacity', 0.5);
+    $(this).find('.tweet-buttons').remove();
   });
-}
-
-
-document.addEventListener('DOMContentLoaded', tweetHoverHighlight);
+});

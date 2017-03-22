@@ -3,22 +3,13 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
-
-/* @font-face {
-  font-family: 'Robto Condensed';
-  src: url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
-} */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 html {
   box-sizing: border-box;
 }
-/* *, *:before, *:after {
-  box-sizing: inherit;
-}
- */
-/*
- * Global layout stuff
- */
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
@@ -28,7 +19,7 @@ body {
 }
 
 main {
-  /* display: block; */
+  display: block;
   margin-left: auto;
   margin-right: auto;
   height: 800px;
@@ -36,10 +27,4 @@ main {
   background-color: white;
   margin-top: 80px;
   padding: 2em;
-
-  /*overflow: auto; */
 }
-
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */

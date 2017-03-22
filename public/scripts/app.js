@@ -4,93 +4,60 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-//  let tweetData = {
-//   "user": {
-//     "name": "Newton",
-//     "avatars": {
-//       "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-//       "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-//       "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-//     },
-//     "handle": "@SirIsaac"
-//   },
-//   "content": {
-//     "text": "If I have seen further it is by standing on the shoulders of giants"
-//   },
-//   "created_at": 1461116232227
-// }
+let tweetData = {
+  "user": {
+    "name": "Newton",
+    "avatars": {
+      "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+      "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+      "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+    },
+    "handle": "@SirIsaac"
+  },
+  "content": {
+    "text": "If I have seen further it is by standing on the shoulders of giants"
+  },
+  "created_at": 1461116232227
+}
 
-// function createTweetElement(tweetData) {
-//   let tweetName = tweetData.user.name;
-//   let tweetHandle = tweetData.handle;
-//   let tweetAvatar = tweetData.user.avatars.regular;
-//   let tweetBody = tweetData.content.text;
-//   let tweetAgeMilliseconds = tweetData.created_at;
-//   //let $tweet = $("<article>").addClass("each-old-tweet").text("Hello");
+function createTweetElement(tweetData) {
 
-//   // $('<article>')
-//   //   .addClass('each-old-tweet')
-//   //   .text('Hello')
-//   //   .appendTo('#tweets-container');
-//   $('<h3>').text('Vinay').appendTo('body');
+  //declaring variables for getting tweetData information from tweetData object that has been sent
+  var tweetName = tweetData.user.name;
+  var tweetHandle = tweetData.user.handle;
+  var tweetAvatar = tweetData.user.avatars.regular;
+  var tweetBody = tweetData.content.text;
+  var tweetAgeMilliseconds = tweetData.created_at;
 
-//   console.log($('<h3>').text('Vinay').appendTo('body'));
-
-//     //$('<p class="whoa-snit">Hi, my name is <b>Vinay</b>.</p>').addClass('cool-p').appendTo('body');
-
-//   // $("#tweets-container").appendTo("<article>").addClass("each-old-tweet").text("Hello");
-
-//   // console.log($("#tweets-container").append("<article>").addClass("each-old-tweet").text("Hello"));
-
-//   // $tweet.append("<header>")
-//   //   .append("<div>").addClass("avatar").text("Hello!");
-
-//   //return $tweet; // needs to return the jquery statement to load the tweet on index.html
-
-// }
-
-// // var $tweet = createTweetElement(tweetData);
-
-// // // Test / driver code (temporary)
-// // //console.log($tweet); // to see what it looks like
-
-// // $('#tweets-container').append($tweet);
-
-// // console.log($('#tweets-container').append($tweet));
-
-// document.addEventListener('DOMContentLoaded', createTweetElement(tweetData));
-
-
-// What happens when you pass a function into jQuery?
-// It registers the function as an event handler for the document
-// DOMContentLoaded event.
-// document.addEventListener('DOMContentLoaded', function () {});
-// $(document).ready(function () {});
-
-function createTweetElement() {
-
+  //declaring articleElement variable that will be returned by the function
   var articleElement = $('<article>').addClass('each-old-tweet')
 
+  //appending additional DOM elemebts using the tweeData variables delcared earlier
+  //appending header right below
   articleElement.append($('<header>')
     .append($('<div>').addClass('avatar')
-      .append($('<img src="images/sample-avatar.png">')))
+      .append($('<img>').attr('src', tweetAvatar)))
     .append($('<div>').addClass('name')
-      .append($('<h2>').text('Vinay')))
+      .append($('<h2>').text(tweetName)))
     .append($('<div>').addClass('handle')
-      .append($('<section>').text('@VBalaji'))));
+      .append($('<section>').text(tweetHandle))));
 
-  articleElement.append($('<section>').addClass('tweet-body').text('If I have seen further it is by standing on the shoulders of giants'));
-
+  //apending body section and line between body and footer
+  articleElement.append($('<section>').addClass('tweet-body').text(tweetBody));
   articleElement.append('<hr>');
 
+  //appending footer
   articleElement.append($('<footer>').addClass('footer'));
 
-  articleElement.appendTo('#tweets-container');
+  //returning articleElement variable
+  return articleElement;
 
 }
 
-
+//Registering the function below as an event handler for the document being ready, i.e. handles the
+//DOMContentLoaded event.
 $(function () {
   console.log('DOMContentLoaded has fired');
-  createTweetElement();
-  });
+  var $tweet = createTweetElement(tweetData);
+  $('#tweets-container').append($tweet);
+});

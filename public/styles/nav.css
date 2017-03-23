@@ -12,6 +12,27 @@ nav {
   overflow: hidden;
 }
 
+#compose {
+  float: right;
+  border-radius: 6px;
+  background-color: #e6fff9;
+  color: #00a087;
+  padding: 10px;
+  margin-top: 19px;
+  font-size: 130%;
+}
+
+#compose:hover {
+  float: right;
+  border-radius: 6px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 19px;
+  font-size: 130%;
+}
+
 #nav-bar .logo {
   height: 80px;
   width: 80px;

@@ -47,14 +47,15 @@ function createTweetElement(tweetData) {
 }
 
 function tweetAge(tweetAgeMilliseconds) {
+  var tweetAge = 0;
   if (Math.round((Date.now() - tweetAgeMilliseconds)/86400000) !== 0) {
     return Math.round((Date.now() - tweetAgeMilliseconds)/86400000) + " day(s) go";
-  } else if (Math.round((Date.now() - tweetAgeMilliseconds)/3600000) > 1) {
-    return Math.round((Date.now() - tweetAgeMilliseconds)/3600000) + "hours ago";
-  } else if (Math.round((Date.now() - tweetAgeMilliseconds)/3600000) ===  1) {
-    return "A few minutes ago";
+  } else if (Math.round((Date.now() - tweetAgeMilliseconds)/3600000) !== 0) {
+    return Math.round((Date.now() - tweetAgeMilliseconds)/3600000) + "hour(s) ago";
+  } else if (Math.round((Date.now() - tweetAgeMilliseconds)/60000) !==  0) {
+    return Math.round((Date.now() - tweetAgeMilliseconds)/60000) + " minute(s) ago";
   } else {
-    return "A few seconds ago";
+    return Math.round((Date.now() - tweetAgeMilliseconds)/1000) + " second(s) ago";
   }
 }
 

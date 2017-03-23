@@ -105,29 +105,47 @@ function loadTweets() {
   });
 }
 
+function setNewTweetCounter() {
+  $('#new-tweet-counter').text('140');
+}
+
+function resetFlashMessage() {
+  $('#flash-message').text('');
+}
+
 //Registering the function below as an event handler for the document being ready, i.e. handles the
 //DOMContentLoaded event.
 $(function () {
   loadTweets();
+  resetFlashMessage();
+  setNewTweetCounter();
 //POST function for Tweet button
   $('#new-tweet').on('submit', function (event) {
   event.preventDefault();
   var tweetBodyContainer = $('#tweet-body');
   var tweetBodyText = tweetBodyContainer.val();
-  $.ajax({
-        url: '/tweets/',
-        method: 'POST',
-        data: {
-          text: tweetBodyText
-        }
-      }).done(function (newTweet) {
-  $('#new-tweet').removeClass('error');
-  tweetBodyContainer.val('');
-  tweetBodyContainer.focus();
-  loadTweets();
-      }).fail(function (err) {
-  $('#new-tweet').addClass('error'); // think about what class we should be adding in case of an error
-      });
+  if (tweetBodyText === '' || tweetBodyText === null) {
+    $('#flash-message').text('Tweet cannot be empty.');
+  } else if (tweetBodyText.length > 140) {
+    $('#flash-message').text('Tweet cannot be more than 140 characters');
+  } else {
+    $.ajax({
+          url: '/tweets/',
+          method: 'POST',
+          data: {
+            text: tweetBodyText
+          }
+        }).done(function (newTweet) {
+    $('#new-tweet').removeClass('error');
+    tweetBodyContainer.val('');
+    tweetBodyContainer.focus();
+    loadTweets();
+    resetFlashMessage();
+    setNewTweetCounter();
+        }).fail(function (err) {
+    $('#new-tweet').addClass('error'); // think about what class we should be adding in case of an error
+        });
+      }
     });
 });
 

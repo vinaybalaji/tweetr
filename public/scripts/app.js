@@ -52,8 +52,9 @@ var data = [
 ];
 
 function renderTweets(data) {
+  $('#tweets-container').empty();
   data.forEach(function (tweetData) {
-    $('#tweets-container').append(createTweetElement(tweetData));
+    $('#tweets-container').prepend(createTweetElement(tweetData));
   });
 }
 
@@ -95,8 +96,42 @@ function tweetAge(tweetAgeMilliseconds) {
   return Math.round((Date.now() - tweetAgeMilliseconds)/86400000);
 }
 
+function loadTweets() {
+  $.ajax({
+    method: 'GET',
+    url: '/tweets/'
+  }).done(function (tweets) {
+    renderTweets(tweets);
+  });
+}
+
 //Registering the function below as an event handler for the document being ready, i.e. handles the
 //DOMContentLoaded event.
 $(function () {
-  renderTweets(data);
+  loadTweets();
+//POST function for Tweet button
+  $('#new-tweet').on('submit', function (event) {
+  event.preventDefault();
+  var tweetBodyContainer = $('#tweet-body');
+  var tweetBodyText = tweetBodyContainer.val();
+  $.ajax({
+        url: '/tweets/',
+        method: 'POST',
+        data: {
+          text: tweetBodyText
+        }
+      }).done(function (newTweet) {
+  $('#new-tweet').removeClass('error');
+  tweetBodyContainer.val('');
+  tweetBodyContainer.focus();
+  loadTweets();
+      }).fail(function (err) {
+  $('#new-tweet').addClass('error'); // think about what class we should be adding in case of an error
+      });
+    });
 });
+
+
+
+
+

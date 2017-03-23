@@ -1,5 +1,5 @@
 $(function () {
-  $( ".new-tweet textarea" ).keyup(function() {
+  $(document).on('keyup', '.new-tweet textarea', function() {
     let counterValue = 140 - $(this).val().length;
     $(this).siblings(".counter").text(counterValue);
     if (counterValue < 0) {

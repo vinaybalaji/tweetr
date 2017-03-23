@@ -16,7 +16,6 @@ module.exports = function makeDataHelpers(db) {
           }
           callback(null, true);
         });
-        db.close();
       });
     },
 
@@ -31,7 +30,6 @@ module.exports = function makeDataHelpers(db) {
           tweets.sort(sortNewestFirst);
           callback(null, tweets);
         });
-        db.close();
       });
     }
   };

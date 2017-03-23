@@ -119,34 +119,42 @@ $(function () {
   loadTweets();
   resetFlashMessage();
   setNewTweetCounter();
-//POST function for Tweet button
-  $('#new-tweet').on('submit', function (event) {
-  event.preventDefault();
-  var tweetBodyContainer = $('#tweet-body');
-  var tweetBodyText = tweetBodyContainer.val();
-  if (tweetBodyText === '' || tweetBodyText === null) {
-    $('#flash-message').text('Tweet cannot be empty.');
-  } else if (tweetBodyText.length > 140) {
-    $('#flash-message').text('Tweet cannot be more than 140 characters');
-  } else {
-    $.ajax({
-          url: '/tweets/',
-          method: 'POST',
-          data: {
-            text: tweetBodyText
-          }
-        }).done(function (newTweet) {
-    $('#new-tweet').removeClass('error');
-    tweetBodyContainer.val('');
-    tweetBodyContainer.focus();
-    loadTweets();
-    resetFlashMessage();
-    setNewTweetCounter();
-        }).fail(function (err) {
-    $('#new-tweet').addClass('error'); // think about what class we should be adding in case of an error
-        });
-      }
-    });
+
+  //Hide the new tweet container on page load
+  $('#new-tweet-container').hide();
+  //Toggle Compose Button when clicked
+  $('#compose').on('click', function (event) {
+    $('#new-tweet-container').slideToggle('fast');
+    $('#tweet-body').focus();
+  });
+  //POST function for Tweet button
+  $('#new-tweet-form').on('submit', function (event) {
+    event.preventDefault();
+    var tweetBodyContainer = $('#tweet-body');
+    var tweetBodyText = tweetBodyContainer.val();
+    if (tweetBodyText === '' || tweetBodyText === null) {
+      $('#flash-message').text('Tweet cannot be empty.');
+    } else if (tweetBodyText.length > 140) {
+      $('#flash-message').text('Tweet cannot be more than 140 characters');
+    } else {
+      $.ajax({
+        url: '/tweets/',
+        method: 'POST',
+        data: {
+          text: tweetBodyText
+        }
+      }).done(function (newTweet) {
+        $('#new-tweet-form').removeClass('error');
+        tweetBodyContainer.val('');
+        tweetBodyContainer.focus();
+        loadTweets();
+        resetFlashMessage();
+        setNewTweetCounter();
+      }).fail(function (err) {
+        $('#new-tweet-form').addClass('error'); // think about what class we should be adding in case of an error
+      });
+    }
+  });
 });
 
 

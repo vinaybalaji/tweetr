@@ -85,7 +85,7 @@ function createTweetElement(tweetData) {
   articleElement.append('<hr>');
 
   //appending footer with tweet options image
-  articleElement.append($('<footer>').addClass('footer').text(tweetAge(tweetAgeMilliseconds) + " days ago")
+  articleElement.append($('<footer>').addClass('footer').text(tweetAge(tweetAgeMilliseconds))
     .append($('<img>').addClass('tweet-options').addClass('tweet-buttons-hidden').attr('src', 'images/tweet-buttons.png')));
 
   //returning articleElement variable
@@ -94,7 +94,16 @@ function createTweetElement(tweetData) {
 }
 
 function tweetAge(tweetAgeMilliseconds) {
-  return Math.round((Date.now() - tweetAgeMilliseconds)/86400000);
+  var tweetAge = 0;
+  if (Math.round((Date.now() - tweetAgeMilliseconds)/86400000) !== 0) {
+    return Math.round((Date.now() - tweetAgeMilliseconds)/86400000) + " day(s) go";
+  } else if (Math.round((Date.now() - tweetAgeMilliseconds)/3600000) !== 0) {
+    return Math.round((Date.now() - tweetAgeMilliseconds)/3600000) + "hour(s) ago";
+  } else if (Math.round((Date.now() - tweetAgeMilliseconds)/60000) !==  0) {
+    return Math.round((Date.now() - tweetAgeMilliseconds)/60000) + " minute(s) ago";
+  } else {
+    return Math.round((Date.now() - tweetAgeMilliseconds)/1000) + " second(s) ago";
+  }
 }
 
 function loadTweets() {

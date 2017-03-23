@@ -84,8 +84,9 @@ function createTweetElement(tweetData) {
   articleElement.append($('<section>').addClass('tweet-body').text(tweetBody));
   articleElement.append('<hr>');
 
-  //appending footer
-  articleElement.append($('<footer>').addClass('footer').text(tweetAge(tweetAgeMilliseconds) + " days ago"));
+  //appending footer with tweet options image
+  articleElement.append($('<footer>').addClass('footer').text(tweetAge(tweetAgeMilliseconds) + " days ago")
+    .append($('<img>').addClass('tweet-options').addClass('tweet-buttons-hidden').attr('src', 'images/tweet-buttons.png')));
 
   //returning articleElement variable
   return articleElement;
@@ -126,6 +127,14 @@ $(function () {
   $('#compose').on('click', function (event) {
     $('#new-tweet-container').slideToggle('fast');
     $('#tweet-body').focus();
+  });
+  //Show tweet buttons image when hovering over each tweet
+  $(document).on('mouseenter', '.each-old-tweet', function(event) {
+    $(this).find('.tweet-options').removeClass('tweet-buttons-hidden').addClass('tweet-buttons-unhidden');
+  });
+  //Hiden tween buttons inage when hovering out of each tweet
+  $(document).on('mouseleave','.each-old-tweet', function(event) {
+    $(this).find('.tweet-options').removeClass('tweet-buttons-unhidden').addClass('tweet-buttons-hidden');
   });
   //POST function for Tweet button
   $('#new-tweet-form').on('submit', function (event) {

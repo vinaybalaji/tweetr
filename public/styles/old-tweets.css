@@ -13,6 +13,20 @@
   opacity: 0.5;
 }
 
+.each-old-tweet:hover {
+  margin-top: 1em;
+  border-radius: 10px;
+  border:  2px solid lightgrey;
+  background-color: white;
+  opacity: 1;
+}
+
+.each-old-tweet header {
+  padding: 5px;
+  background-color: lightgrey;
+  height:  70px;
+}
+
 .each-old-tweet header {
   padding: 5px;
   background-color: lightgrey;
@@ -55,15 +69,25 @@
   margin-bottom: 0px;
   color: lightgrey;
   background-color: lightgrey;
-  opacity: 0.3;
 }
 
 .each-old-tweet footer {
   padding: 8px;
 }
 
-.tweet-buttons {
+.tweet-buttons-unhidden {
   height: 25px;
   width: auto;
   float: right;
 }
+
+.tweet-buttons-hidden {
+  height: 25px;
+  width: auto;
+  float: right;
+  display: none;
+}
+
+
+
+

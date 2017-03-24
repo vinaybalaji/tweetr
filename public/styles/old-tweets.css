@@ -64,24 +64,43 @@
 .each-old-tweet hr {
   margin-top: 0px;
   margin-bottom: 0px;
-  color: lightgrey;
-  background-color: lightgrey;
+  border-style: solid;
+  border-color: #e6e6e6;
 }
 
 .each-old-tweet footer {
+  font-size: 95%;
   padding: 8px;
 }
 
 .tweet-buttons-unhidden {
-  height: 25px;
+  height: 20px;
   width: auto;
+  padding-left: 2px;
   float: right;
 }
 
 .tweet-buttons-hidden {
-  height: 25px;
+  height: 20px;
   width: auto;
+  padding-left: 2px;
   float: right;
+  display: none;
+}
+
+.like-heart:hover {
+  cursor: pointer;
+}
+
+.likes-counter {
+  float: right;
+  font-size: 80%;
+  color: #00a087;
+  padding-right: 8px;
+  padding-top: 3px;
+}
+
+.tweet-id {
   display: none;
 }
 

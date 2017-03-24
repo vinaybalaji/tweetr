@@ -12,13 +12,14 @@ function renderTweets(data) {
 }
 
 function createTweetElement(tweetData) {
-
   //declaring variables for getting tweetData information from tweetData object that has been sent
   var tweetName = tweetData.user.name;
   var tweetHandle = tweetData.user.handle;
   var tweetAvatar = tweetData.user.avatars.regular;
   var tweetBody = tweetData.content.text;
+  var tweetLikes = tweetData.likes;
   var tweetAgeMilliseconds = tweetData.created_at;
+  var tweetID = tweetData._id;
 
   //declaring articleElement variable that will be returned by the function
   var articleElement = $('<article>').addClass('each-old-tweet')
@@ -39,7 +40,12 @@ function createTweetElement(tweetData) {
 
   //appending footer with tweet options image
   articleElement.append($('<footer>').addClass('footer').text(tweetAge(tweetAgeMilliseconds))
-    .append($('<img>').addClass('tweet-options').addClass('tweet-buttons-hidden').attr('src', 'images/tweet-buttons.png')));
+    .append($('<img>').addClass('tweet-options').addClass('tweet-buttons-hidden').addClass('like-heart').attr('src', 'images/heart-empty.png'))
+    .append($('<img>').addClass('tweet-options').addClass('tweet-buttons-hidden').attr('src', 'images/retweet.png'))
+    .append($('<img>').addClass('tweet-options').addClass('tweet-buttons-hidden').attr('src', 'images/flag.png'))
+    .append($('<span>').addClass('tweet-options').addClass('tweet-buttons-hidden').addClass('likes-counter').text(tweetLikes + " likes"))
+    .append($('<span>').addClass('tweet-options').addClass('tweet-id').text(tweetID))
+    );
 
   //returning articleElement variable
   return articleElement;
@@ -96,10 +102,38 @@ $(function () {
   $(document).on('mouseenter', '.each-old-tweet', function(event) {
     $(this).find('.tweet-options').removeClass('tweet-buttons-hidden').addClass('tweet-buttons-unhidden');
   });
-  //Hiden tween buttons inage when hovering out of each tweet
+  //Hiden tweet buttons image when hovering out of each tweet
   $(document).on('mouseleave','.each-old-tweet', function(event) {
     $(this).find('.tweet-options').removeClass('tweet-buttons-unhidden').addClass('tweet-buttons-hidden');
   });
+  //Like and unlike tweets and Mongo DB gets updated
+  $(document).on('click', '.like-heart', function(event) {
+    event.preventDefault();
+    var currentLikesCounter = Number($(this).siblings('.likes-counter').text().split(' ')[0]);
+    var currentTweetID = $(this).siblings('.tweet-id').text();
+    if(($(this)['0'].src).includes("empty")) {
+      currentLikesCounter += 1;
+      $(this).attr('src', 'images/heart.png');
+      $(this).siblings('.likes-counter').text(currentLikesCounter + " likes");
+    } else {
+      currentLikesCounter -=1;
+      $(this).attr('src', 'images/heart-empty.png');
+      $(this).siblings('.likes-counter').text(currentLikesCounter + " likes");
+    }
+    $.ajax({
+      url: '/tweets/likes',
+      method: 'POST',
+      data: {
+        _id: currentTweetID,
+        likes: currentLikesCounter
+      }
+    }).done(function (newTweet) {
+      console.log('');
+    }).fail(function (err) {
+      console.log('failed');
+    });
+  });
+
   //POST function for Tweet button
   $('#new-tweet-form').on('submit', function (event) {
     event.preventDefault();
@@ -124,7 +158,7 @@ $(function () {
         resetFlashMessage();
         setNewTweetCounter();
       }).fail(function (err) {
-        $('#new-tweet-form').addClass('error'); // think about what class we should be adding in case of an error
+        console.log('failed');
       });
     }
   });

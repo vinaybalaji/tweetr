@@ -2,6 +2,7 @@
 
 // Simulates the kind of delay we see with network or filesystem operations
 const simulateDelay = require("./util/simulate-delay");
+const mongo = require('mongodb');
 
 // Defines helper functions for saving and getting tweets, using the database `db`
 module.exports = function makeDataHelpers(db) {
@@ -31,6 +32,15 @@ module.exports = function makeDataHelpers(db) {
           callback(null, tweets);
         });
       });
+    },
+
+    //Update tweets database for likes counter
+    updateTweet: function(tweetID, tweetLikesCounter, callback) {
+      var o_id = new mongo.ObjectID(tweetID);
+      db.collection('tweets').updateOne({_id: o_id}, {$set: {likes: tweetLikesCounter}}, function (err, result) {
+        if (err) throw err;
+        callback(null, true);
+      });
     }
-  };
-}
+  }
+};

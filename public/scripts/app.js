@@ -56,7 +56,7 @@ function tweetAge(tweetAgeMilliseconds) {
   if (Math.round((Date.now() - tweetAgeMilliseconds)/86400000) !== 0) {
     return Math.round((Date.now() - tweetAgeMilliseconds)/86400000) + " day(s) go";
   } else if (Math.round((Date.now() - tweetAgeMilliseconds)/3600000) > 1) {
-    return Math.round((Date.now() - tweetAgeMilliseconds)/3600000) + "hours ago";
+    return Math.round((Date.now() - tweetAgeMilliseconds)/3600000) + " hours ago";
   } else if (Math.round((Date.now() - tweetAgeMilliseconds)/3600000) ===  1) {
     return "A few minutes ago";
   } else {
